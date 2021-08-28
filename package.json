@@ -1,0 +1,26 @@
+{
+  "name": "messagingapp",
+  "version": "1.0.0",
+  "description": "messagingapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sam prasad",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "confirm-dialog": "^0.1.2",
+    "event": "^1.0.0",
+    "events": "^3.3.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "http": "*",
+    "mongodb": "^2.2.33",
+    "popups": "^1.1.3",
+    "pug": "^3.0.2",
+    "socket.io": "^4.1.3",
+    "utf-8": "^2.0.0",
+    "util": "^0.12.4"
+  }
+}

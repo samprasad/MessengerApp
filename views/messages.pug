@@ -1,0 +1,86 @@
+head
+  link#bootstrap-css(href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css' rel='stylesheet')
+  link(href='/css/tablestyle.css' rel='stylesheet')
+  link(rel='stylesheet', href='/stylesheets/popupS.min.css')
+  script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js')
+  script(src='//code.jquery.com/jquery-1.11.1.min.js')
+  script(src="/js/popupS.min.js") 
+.container
+  .row
+    .col-md-12
+      .alert.alert-info
+        | Welcome #{username}   
+      div(style='float: right;')
+        a(href='/logout')
+          button.form-control.btn-danger Logout
+      .alert.alert-success(style='display:none;')
+        span.glyphicon.glyphicon-ok
+        |  Drag table row and cange Order
+      h4  User Data:    
+      table.table
+        thead
+          tr.success
+            th
+              | Username
+            th
+              | Email
+        tbody   
+        each user in users 
+            tr.active  
+              td=user.username
+                | 
+              td=user.email
+                |
+      h4  Messages Data:    
+      table.table
+        thead
+          tr.success
+            th
+              | From
+            th
+              | To
+            th
+              | Message
+            th
+              | Time      
+            th
+              | Action                                      
+        tbody   
+        each message in messages 
+            tr.active  
+              td=message.username
+                | 
+              td=message.recipient
+                |  
+              td=message.message
+                | 
+              td=message.message_date  
+                |
+              script.
+                function popup() {
+                    popupS.confirm({
+                        content: 'Do you want to delete ?',
+                        labelOk: 'Yes',
+                        labelCancel: 'No',
+                        onSubmit: function() {
+                            window.location.href = "/messages/delete/#{message._id}"
+                        },
+                        onClose: function() {
+                            console.log(':(');
+                            window.location.href = "/messages"
+                        }
+                    });
+                }   
+              td
+               <!-- button(onclick="popup()") Delete --> 
+                a(style='text-decoration:none' href='/messages/delete/'+message._id) Delete                                                              
+    .form-control
+      form(action='/send' method='post')
+        | To: 
+        select(name='recipient' id='' required='')
+          option(value='') Select a recipient
+          each user in users 
+           if(user.username != username)
+            option(value=user.username) #{user.username}
+        textarea.form-control(placeholder='Enter messsage' name='message_content' id='' cols='30' rows='10' required='')
+        button(type='submit' name='submit')  Send                         
