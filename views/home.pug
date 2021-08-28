@@ -1,0 +1,42 @@
+head
+  link#bootstrap-css(href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css' rel='stylesheet')
+  link(href='/css/tablestyle.css' rel='stylesheet')
+  script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js')
+  script(src='//code.jquery.com/jquery-1.11.1.min.js')
+.container
+  .row
+    .col-md-12
+      .alert.alert-info
+        | Welcome #{username}   
+      div(style='float: right;')
+        a(href='/logout')
+          button.form-control.btn-danger Logout
+      .alert.alert-success(style='display:none;')
+        span.glyphicon.glyphicon-ok
+        |  Drag table row and cange Order
+      h4  User Data:    
+      table.table
+        thead
+          tr.success
+            th
+              | Username
+            th
+              | Email
+        tbody   
+        each user in users 
+            tr.active  
+              td=user.username
+                | 
+              td=user.email
+                | 
+    .form-control
+      form(action='/send' method='post')
+        | To: 
+        select(name='recipient' id='' required='')
+          option(value='') Select a recipient
+          each user in users 
+           if(user.username != username)
+            option(value=user.username) #{user.username}
+        textarea.form-control(placeholder='Enter messsage' name='message_content' id='' cols='30' rows='10' required='')
+        button(type='submit' name='submit')  Send                         
+      a(style='text-decoration:none' href='/messages') View All messages         

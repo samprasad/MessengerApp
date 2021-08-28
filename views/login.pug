@@ -1,0 +1,20 @@
+head
+  link#bootstrap-css(href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css' rel='stylesheet')
+  link(href='css/style.css' rel='stylesheet')
+  script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js')
+  script(src='//code.jquery.com/jquery-1.11.1.min.js')
+.container
+  .row
+    .col-sm-6.col-md-4.col-md-offset-4
+      h1.text-center.login-title  Login 
+      .account-wall
+        img.profile-img(src='https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120' alt='')
+        form.form-signin(method='post' action='/login')
+          input.form-control(type='text' name='username' placeholder='Username' required='' autofocus='')
+          input.form-control(type='password' name='password' placeholder='Password' required='' autofocus='')
+          button.btn.btn-lg.btn-primary.btn-block(type='submit')
+            | Sign in
+          br
+          a(href='/register')
+            button.btn.btn-lg.btn-primary.btn-block.btn-danger(type='button') Sign up?
+            p.error-msg #{msg}  
